@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'groovy'
+    id "de.undercouch.download" version "4.0.2"
+}
+
+group = 'osvlab'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '13'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.codehaus.groovy:groovy'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task copyYarn(type: Copy) {
+    from('node_modules/layui-src/dist') {
+        into('layui')
+    }
+    from(['node_modules/xterm/lib', 'node_modules/xterm/css']) {
+        into('xterm')
+    }
+    into("$buildDir/resources/main/static/lib")
+}
+
+task downloadExternalLib() {
+}
+
+task copyStaticLib() {
+    dependsOn('copyYarn', 'downloadExternalLib')
+}

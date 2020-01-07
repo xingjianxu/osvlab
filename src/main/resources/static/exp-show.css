@@ -1,0 +1,52 @@
+.exp-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.exp-rightpanel {
+    width: 40%;
+    float: right;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.exp-title-wrapper {
+    line-height: 40px;
+    padding-left: 8px;
+    border-bottom: 1px solid grey;
+    box-sizing: border-box;
+}
+.exp-title {
+    display: inline-block;
+    font-size: 1.2em;
+}
+.exp-title-btns {
+    float: right;
+    margin-right: 10px;
+}
+.exp-steps-wrapper {
+    padding: 0 8px;
+    overflow: auto;
+    position: absolute;
+    top: 44px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.exp-steps {
+}
+
+.exp-terminal {
+    width: 60%;
+    border-right: 1px solid #777;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    float: left;
+    overflow: hidden auto;
+}

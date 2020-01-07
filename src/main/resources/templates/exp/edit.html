@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<head>
+    <title>OSVLab</title>
+    <script th:src="@{~/exp-edit.js}" defer></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="layui-container">
+        <div style="margin-bottom: 10px">
+            <span class="layui-breadcrumb">
+              <a th:href="@{~/}">首页</a>
+              <a th:href="@{~/exp}">实验</a>
+              <a>
+                <cite th:switch="${exp.id == null}">
+                    <span th:case="true">新建</span>
+                    <span th:case="false">编辑</span>
+                </cite>
+              </a>
+            </span>
+        </div>
+
+        <form class="layui-form" th:action="@{~/exp}" method="post" autocomplete="off">
+            <input type="hidden" name="id" th:value="${exp.id}">
+            <div class="layui-form-item">
+                <label class="layui-form-label">实验名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required lay-verify="required"
+                           autocomplete="off" class="layui-input" th:value="${exp.title}">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">简介说明</label>
+                <div class="layui-input-block">
+                    <textarea name="comment" class="layui-textarea" th:text="${exp.comment}"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">起止时间</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" name="seRange" id="exp_se_range"
+                           th:value="${#temporals.format(exp.startedAt, 'yyyy-MM-dd HH:mm:ss')}+' ~ '+${#temporals.format(exp.endedAt, 'yyyy-MM-dd HH:mm:ss')}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

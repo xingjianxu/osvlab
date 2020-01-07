@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<head>
+    <title>OSVLab</title>
+    <link rel="stylesheet" th:href="@{~/lib/xterm/xterm.css}">
+    <link rel="stylesheet" th:href="@{~/exp-show.css}">
+    <script th:src="@{~/lib/xterm/xterm.js}" defer></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="exp-content">
+        <div class="exp-terminal">
+            你的内容 3/12
+        </div>
+        <div class="exp-rightpanel">
+            <div class="exp-title-wrapper">
+                <h1 class="exp-title" th:text="${exp.title}"></h1>
+                <div class="exp-title-btns">
+                    <a th:href="@{~/exp/{id}/edit(id=${exp.id})}" class="layui-btn layui-btn-xs">编辑</a>
+                </div>
+            </div>
+            <div class="exp-steps-wrapper">
+                <div class="exp-steps">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
